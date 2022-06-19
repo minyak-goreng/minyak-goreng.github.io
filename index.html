@@ -109,7 +109,7 @@
             var ktp = values[0].value;
             var nama = values[1].value;
             var alamat = values[2].value;
-            var RFID = values[2].value;
+            var RFID = values[3].value;
             var kuota = 2;
             firebase.database().ref('pembeli/' + RFID).set({
                 ktp: ktp,
