@@ -110,12 +110,13 @@
             var nama = values[1].value;
             var alamat = values[3].value;
             var RFID = values[2].value;
+            var kode = RFID.trim();
             var kuota = 2;
-            firebase.database().ref('pembeli/' + RFID).set({
+            firebase.database().ref('pembeli/' + kode).set({
                 ktp: ktp,
                 nama: nama,
                 alamat: alamat,
-                rfid: RFID,
+                rfid: kode,
                 kuota: kuota,
             });
             // Reassign lastID value 
