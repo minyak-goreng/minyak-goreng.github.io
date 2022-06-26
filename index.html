@@ -125,70 +125,7 @@
             // menampilkan alert
             alert("Berhasil menambah data");
         });
-        // Update Data
-        var updateID = 0;
-        $('body').on('click', '.updateStudent', function() {
-            updateID = $(this).attr('data-id');
-            firebase.database().ref('students/' + updateID).on('value', function(snapshot) {
-                var values = snapshot.val();
-                var updateData = '<div class="form-group">\ <label for="edit_nis" class="col-md-12 col-form-label">Nomor Induk Siswa</label>\ <div class="col-md-12">\ <input id="edit_nis" type="text" class="form-control" name="edit_nis" value="' + values.nis + '" placeholder="Nomor Induk Siswa" required autofocus>\ </div>\ </div>\ <div class="form-group">\ <label for="edit_name" class="col-md-12 col-form-label">Nama Lengkap</label>\ <div class="col-md-12">\ <input id="edit_name" type="text" class="form-control" name="edit_name" value="' + values.name + '" placeholder="Nama Siswa" required autofocus>\ </div>\ </div>\ <div class="form-group">\ <label for="edit_age" class="col-md-12 col-form-label">Usia</label>\ <div class="col-md-12">\ <input id="edit_age" type="text" class="form-control" name="edit_age" value="' + values.age + '" placeholder="Usia" required autofocus>\ </div>\ </div>';
-                $('#updateBody').html(updateData);
-            });
-        });
-        $('.updateStudent').on('click', function() {
-            var values = $(".users-update-record-model").serializeArray();
-            var postData = {
-                nis: values[0].value,
-                name: values[1].value,
-                age: values[2].value,
-            };
-            var updates = {};
-            updates['/students/' + updateID] = postData;
-            firebase.database().ref().update(updates);
-            // menyembunyikan modal 
-            $("#update-modal").modal('hide');
-            // menampilkan alert 
-            alert("Berhasil mengubah data");
-        });
-        // Remove Data 
-        $("body").on('click', '.removeStudent', function() {
-            var id = $(this).attr('data-id');
-            $('body').find('.users-remove-record-model').append('<input name="id" type="hidden" value="' + id + '">');
-        });
-        $('.deleteStudent').on('click', function() {
-            var values = $(".users-remove-record-model").serializeArray();
-            var id = values[0].value;
-            firebase.database().ref('students/' + id).remove();
-            $('body').find('.users-remove-record-model').find("input").remove();
-            // menyembunyikan modal 
-            $("#remove-modal").modal('hide');
-            // menampilkan alert 
-            alert("Berhasil menghapus data");
-        });
-        $('.remove-data-from-delete-form').click(function() {
-            $('body').find('.users-remove-record-model').find("input").remove();
-        });
-        // Initialize Firebase 
-        // var firebaseConfig = {
-        //     apiKey: "AIzaSyB8KnIFiWLykMm-LYJCjU049IyqgQAtZ-o",
-        //     authDomain: "web-iot-cef24.firebaseapp.com",
-        //     databaseURL: "https://web-iot-cef24-default-rtdb.asia-southeast1.firebasedatabase.app/.firebaseio.com",
-        //     projectId: "web-iot-cef24",
-        //     storageBucket: "web-iot-cef24.appspot.com",
-        //     messagingSenderId: "858490685690",
-        //     appId: "1:858490685690:web:3d30e37dd190d52cf62143",
-        //     measurementId: "G-VDJB1L3YZ6"
-        // };
-        // firebase.initializeApp(firebaseConfig);
-        // var admin = require("firebase-admin");
-
-        // var serviceAccount = require("path/to/serviceAccountKey.json");
-
-        // admin.initializeApp({
-        //     credential: admin.credential.cert(serviceAccount),
-        //     databaseURL: "https://web-iot-cef24-default-rtdb.asia-southeast1.firebasedatabase.app"
-        // });
-        // var database = firebase.database();
+       
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
